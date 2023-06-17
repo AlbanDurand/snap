@@ -8,6 +8,16 @@
     "require-dev": {
         "phpunit/phpunit": "^9.6"
     },
+    "autoload": {
+        "psr-4": {
+            "AlbanDurand\\Snap\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AlbanDurand\\Snap\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Alban DURAND",
