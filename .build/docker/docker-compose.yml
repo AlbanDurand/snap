@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  nginx:
+    image: ${COMPOSE_PROJECT_NAME}/nginx
+    build:
+      context: ./nginx/
+    ports:
+      - 8080:8080
+    volumes:
+      - ../../:/app
+      - ./nginx/vhost.conf:/opt/bitnami/nginx/conf/server_blocks/vhost.conf:ro
+    networks:
+      - snap
+
+  php-fpm:
+    image: ${COMPOSE_PROJECT_NAME}/php-fpm
+    build:
+      context: ./php-fpm/
+      args:
+        - VERSION=${PHP_VERSION}
+    volumes:
+      - ../../:/app
+      - ./php-fpm/config/custom.ini:/opt/bitnami/php/etc/conf.d/custom.ini:ro
+
+    networks:
+      - snap
+
+networks:
+  snap:
